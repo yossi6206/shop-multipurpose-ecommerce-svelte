@@ -13,9 +13,9 @@
 
   // Yup Validation Schema
   const schema = yup.object({
-    name: yup.string().required('Name is required'),
-    email: yup.string().required('Email is required').email('Invalid email'),
-    password: yup.string().required().min(6).label("Password")
+    name: yup.string().required('שם הוא שדה חובה'),
+    email: yup.string().required('אימייל הוא שדה חובה').email('כתובת אימייל לא תקינה'),
+    password: yup.string().required('סיסמה היא שדה חובה').min(6, 'הסיסמה חייבת להכיל לפחות 6 תווים').label("סיסמה")
   });
 
   async function onSubmit(event: Event) {
@@ -53,15 +53,15 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
  
-<form onsubmit={onSubmit}>
+<form onsubmit={onSubmit} dir="rtl">
   <div class="tp-login-input-wrapper">
     <!-- Name Field -->
     <div class="tp-login-input-box">
       <div class="tp-login-input">
-        <input id="name" type="text" placeholder="Shahnewaz Sakil" bind:value={$name} />
+        <input id="name" type="text" placeholder="ישראל ישראלי" bind:value={$name} />
       </div>
       <div class="tp-login-input-title">
-        <label for="name">Your Name</label>
+        <label for="name">השם שלך</label>
       </div>
       <ErrMsg msg={$errors.name} />
     </div>
@@ -69,10 +69,10 @@
     <!-- Email Field -->
     <div class="tp-login-input-box">
       <div class="tp-login-input">
-        <input id="email" type="email" placeholder="shofy@mail.com" bind:value={$email} />
+        <input id="email" type="email" placeholder="shofy@mail.com" bind:value={$email} dir="ltr" />
       </div>
       <div class="tp-login-input-title">
-        <label for="email">Your Email</label>
+        <label for="email">האימייל שלך</label>
       </div>
       <ErrMsg msg={$errors.email} />
     </div>
@@ -85,8 +85,9 @@
             id="tp_password"
             type={$showPass ? 'text' : 'password'}
             name="password"
-            placeholder="Min. 6 character"
+            placeholder="לפחות 6 תווים"
             bind:value={$password}
+            dir="ltr"
           />
         </div>
         <div class="tp-login-input-eye" id="password-show-toggle">
@@ -99,7 +100,7 @@
           </span>
         </div>
         <div class="tp-login-input-title">
-          <label for="tp_password">Password</label>
+          <label for="tp_password">סיסמה</label>
         </div>
       </div>
       <ErrMsg msg={$errors.password} />
@@ -107,6 +108,6 @@
   </div>
 
   <div class="tp-login-bottom">
-    <button type="submit" class="tp-login-btn w-100">Sign Up</button>
+    <button type="submit" class="tp-login-btn w-100">הרשמה</button>
   </div>
 </form>

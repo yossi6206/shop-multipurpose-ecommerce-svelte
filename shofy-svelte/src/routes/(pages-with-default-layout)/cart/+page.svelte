@@ -6,13 +6,13 @@
 
 <div>
 	<!-- meta title start -->
-	<MetaTitle title="Cart Page - Shofy" />
+	<MetaTitle title="עגלת קניות - Shofy" />
 	<!-- meta title end -->
 
 	<main>
 
 		<!-- breadcrumb area start -->
-		<BreadcrumbFour title="Shopping Cart" subtitle="Shopping Cart" />
+		<BreadcrumbFour title="עגלת קניות" subtitle="עגלת קניות" homeLabel="בית" dir="rtl" />
 		<!-- breadcrumb area end -->
 
 		<!-- cart area start -->

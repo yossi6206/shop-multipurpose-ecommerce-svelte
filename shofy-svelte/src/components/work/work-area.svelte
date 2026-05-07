@@ -7,7 +7,7 @@
 		<div class="row justify-content-center">
 			<div class="col-xl-6">
 				<div class="tp-work-section-title-wrapper text-center mb-60">
-					<h3 class="tp-work-section-title">Take a Look at our <br /> Team's Work</h3>
+					<h3 class="tp-work-section-title">הצצה לעבודת <br /> הצוות שלנו</h3>
 				</div>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 						</span>
 					</div>
 					<div class="tp-work-content">
-						<h3 class="tp-work-title">We have something <br /> for everyone.</h3>
+						<h3 class="tp-work-title">יש לנו משהו <br /> לכולם.</h3>
 					</div>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 						</span>
 					</div>
 					<div class="tp-work-content">
-						<h3 class="tp-work-title">We be glad to work <br /> with you!</h3>
+						<h3 class="tp-work-title">נשמח לעבוד <br /> איתכם!</h3>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 						</span>
 					</div>
 					<div class="tp-work-content">
-						<h3 class="tp-work-title">Whether you're <br /> shopping for clothing</h3>
+						<h3 class="tp-work-title">בין אם אתם <br /> קונים ביגוד</h3>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 						</span>
 					</div>
 					<div class="tp-work-content">
-						<h3 class="tp-work-title">We work with top <br /> suppliers</h3>
+						<h3 class="tp-work-title">אנו עובדים עם <br /> ספקים מובילים</h3>
 					</div>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 		<div class="row justify-content-center">
 			<div class="col-xl-4">
 				<div class="tp-work-quote text-center">
-					<p>So start browsing today and find the perfect <br /> products to suit your needs!</p>
+					<p>אז התחילו לגלוש היום ומצאו את <br /> המוצרים המושלמים שמתאימים לצרכים שלכם!</p>
 				</div>
 			</div>
 		</div>

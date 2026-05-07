@@ -19,14 +19,14 @@
 								<img src="/img/users/user-4.jpg" alt="user" />
 							</div>
 							<div class="tp-author-info">
-								<h3 class="tp-author-info-title">Theodore Handle</h3>
-								<span class="tp-author-info-designation">UI/UX design</span>
+								<h3 class="tp-author-info-title">תיאודור הנדל</h3>
+								<span class="tp-author-info-designation">עיצוב UI/UX</span>
 							</div>
 						</div>
 						<div class="tp-author-content">
 							<p>
-								We work with top suppliers and manufacturers to ensure that every item we sell meets
-								our high standards for durability, performance, and style.
+								אנו עובדים עם ספקים ויצרנים מובילים כדי להבטיח שכל פריט העומד למכירה עומד
+								בסטנדרטים הגבוהים שלנו לעמידות, ביצועים וסגנון.
 							</p>
 						</div>
 					</div>

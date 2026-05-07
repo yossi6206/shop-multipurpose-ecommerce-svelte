@@ -3,8 +3,8 @@
       <div class="row">
         <div class="col-xl-8 col-lg-10">
             <div class="tp-about-banner-wrapper">
-              <span class="tp-about-banner-subtitle">History</span>
-              <h3 class="tp-about-banner-title">Well-coordinated Teamwork Speaks About Us</h3>
+              <span class="tp-about-banner-subtitle">ההיסטוריה שלנו</span>
+              <h3 class="tp-about-banner-title">עבודת צוות מתואמת מספרת עלינו</h3>
             </div>
         </div>
       </div>
@@ -18,9 +18,9 @@
       <div class="row">
         <div class="col-xl-12">
             <div class="tp-about-banner-content">
-              <p>We are thrilled to offer you a wide range of products that you won't find anywhere else. Whether you're shopping for clothing, accessories, gadgets, or home decor, we have something for everyone.</p>
+              <p>אנו שמחים להציע לכם מגוון רחב של מוצרים שלא תמצאו בשום מקום אחר. בין אם אתם קונים ביגוד, אביזרים, גאדג'טים או עיצוב הבית — יש לנו משהו לכולם.</p>
 
-              <p>Our commitment to quality is reflected in every product we offer. We work with top suppliers and manufacturers to ensure that every item we sell meets our high standards for durability, performance, and style. And with a user-friendly interface and intuitive navigation, shopping on our site is a breeze. We understand that security is a top concern for online shoppers, which is why we employ the latest encryption technologies and follow industry best practices to keep your personal information safe. And with fast, reliable shipping options, you can enjoy your purchases in no time.</p>
+              <p>המחויבות שלנו לאיכות באה לידי ביטוי בכל מוצר שאנו מציעים. אנו עובדים עם ספקים ויצרנים מובילים כדי להבטיח שכל פריט העומד למכירה עומד בסטנדרטים הגבוהים שלנו לעמידות, ביצועים וסגנון. הממשק הידידותי והניווט האינטואיטיבי הופכים את הקנייה באתר שלנו לחוויה קלה ונעימה. אנו מבינים שאבטחה היא דאגה מרכזית עבור קונים מקוונים, ולכן אנו משתמשים בטכנולוגיות הצפנה מתקדמות ועוקבים אחר הנהלים הטובים ביותר בתעשייה כדי לשמור על בטיחות המידע האישי שלכם. ועם אפשרויות משלוח מהירות ואמינות, תוכלו ליהנות מהרכישות שלכם בזמן קצר.</p>
             </div>
         </div>
       </div>

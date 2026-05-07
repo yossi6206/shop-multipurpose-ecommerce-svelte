@@ -46,7 +46,7 @@
 	<td class="tp-cart-action">
 		<button class="tp-cart-action-btn" onclick={() => removeCartProduct(item)}>
 			<Remove />
-			<span>Remove</span>
+			<span>הסר</span>
 		</button>
 	</td>
 </tr>

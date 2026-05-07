@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { formatPrice } from '$lib';
 	import { addCartProduct,isItemInCart } from '../../../store/cart-store';
 	import { wishlistStore } from '../../../store/wishlist-store';
 	import CountdownTimer from '../../common/countdown-timer.svelte';
@@ -16,9 +15,31 @@
 
 	const itemInWishlist = wishlistStore.isItemInWishlist(item);
 	const itemInCart = isItemInCart(item);
+
+	const productTitles: Record<string, string> = {
+		'Headphones Wireless.': 'אוזניות אלחוטיות',
+		'Gaming Headphone': 'אוזניות גיימינג',
+		'Headphone with Mic': 'אוזניות עם מיקרופון',
+		'Galaxy Android Tablet': 'טאבלט גלקסי אנדרואיד',
+		'iPhone 14 Pro': 'אייפון 14 פרו',
+		'Apple iPad Air': 'אייפד אייר של אפל'
+	};
+
+	const categoryNames: Record<string, string> = {
+		Headphones: 'אוזניות',
+		'Mobile Tablets': 'טאבלטים וסלולר'
+	};
+
+	const formatHebrewPrice = (price: number, showDecimals = true) =>
+		new Intl.NumberFormat('he-IL', {
+			style: 'currency',
+			currency: 'ILS',
+			minimumFractionDigits: showDecimals ? 2 : 0,
+			maximumFractionDigits: showDecimals ? 2 : 0
+		}).format(price);
 </script>
 
-<div class={`${offer_style ? 'tp-product-offer-item' : 'mb-25'} tp-product-item transition-3`}>
+<div class={`${offer_style ? 'tp-product-offer-item' : 'mb-25'} tp-product-item tp-product-item-rtl transition-3`} dir="rtl">
 	<div class="tp-product-thumb p-relative fix m-img">
 		<a href={`/product-details/${item.id}`}>
 			<img src={item.img} alt="product-electronic" />
@@ -77,12 +98,12 @@
 	</div>
 
 	<!-- product content -->
-	<div class="tp-product-content">
+	<div class="tp-product-content" dir="rtl">
 		<div class="tp-product-category">
-			<a href={`/product-details/${item.id}`}>{item.category.name}</a>
+			<a href={`/product-details/${item.id}`}>{categoryNames[item.category.name] ?? item.category.name}</a>
 		</div>
 		<h3 class="tp-product-title">
-			<a href={`/product-details/${item.id}`}>{item.title}</a>
+			<a href={`/product-details/${item.id}`}>{productTitles[item.title] ?? item.title}</a>
 		</h3>
 		<div class="tp-product-rating d-flex align-items-center">
 			<div class="tp-product-rating-icon">
@@ -96,14 +117,14 @@
 				<span>({item.reviews?.length} ביקורות)</span>
 			</div>
 		</div>
-		<div class="tp-product-price-wrapper">
+		<div class="tp-product-price-wrapper" dir="rtl">
 			{#if item.discount > 0}
-				<span class="tp-product-price old-price">{formatPrice(item.price, false)}</span>
 				<span class="tp-product-price new-price">
-					{formatPrice(Number(item.price) - (Number(item.price) * Number(item.discount)) / 100)}
+					{formatHebrewPrice(Number(item.price) - (Number(item.price) * Number(item.discount)) / 100)}
 				</span>
+				<span class="tp-product-price old-price">{formatHebrewPrice(item.price, false)}</span>
 			{:else}
-				<span class="tp-product-price new-price">{formatPrice(item.price)}</span>
+				<span class="tp-product-price new-price">{formatHebrewPrice(item.price)}</span>
 			{/if}
 		</div>
 

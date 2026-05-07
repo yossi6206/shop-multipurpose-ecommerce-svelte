@@ -3,30 +3,30 @@
 	import SocialLogin from './social-login.svelte';
 </script>
 
-<section class="tp-login-area pb-140 p-relative z-index-1 fix">
+<section class="tp-login-area pb-140 p-relative z-index-1 fix" dir="rtl">
 	<div class="tp-login-shape">
-		<img class="tp-login-shape-1" src="/img/login/login-shape-1.png" alt="shape" />
-		<img class="tp-login-shape-2" src="/img/login/login-shape-2.png" alt="shape" />
-		<img class="tp-login-shape-3" src="/img/login/login-shape-3.png" alt="shape" />
-		<img class="tp-login-shape-4" src="/img/login/login-shape-4.png" alt="shape" />
+		<img class="tp-login-shape-1" src="/img/login/login-shape-1.png" alt="צורה" />
+		<img class="tp-login-shape-2" src="/img/login/login-shape-2.png" alt="צורה" />
+		<img class="tp-login-shape-3" src="/img/login/login-shape-3.png" alt="צורה" />
+		<img class="tp-login-shape-4" src="/img/login/login-shape-4.png" alt="צורה" />
 	</div>
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-xl-6 col-lg-8">
 				<div class="tp-login-wrapper">
 					<div class="tp-login-top text-center mb-30">
-						<h3 class="tp-login-title">Sign Up Shofy.</h3>
+						<h3 class="tp-login-title">הרשמה לשופי.</h3>
 						<p>
-							Already have an account? <span><a href="/login">Sign In</a></span>
+							כבר יש לך חשבון? <span><a href="/login">כניסה</a></span>
 						</p>
 					</div>
 					<div class="tp-login-option">
 						<!-- login social start -->
-						<SocialLogin />
+						<SocialLogin googleLabel="הרשמה עם גוגל" />
 						<!-- login social end -->
 						<div class="tp-login-mail text-center mb-40">
 							<!-- svelte-ignore a11y_invalid_attribute -->
-							<p>or Sign up with <a href="#">Email</a></p>
+							<p>או הירשם עם <a href="#">אימייל</a></p>
 						</div>
 						<!-- form start -->
 						<RegisterForm />

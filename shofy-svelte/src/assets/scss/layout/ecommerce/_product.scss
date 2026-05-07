@@ -136,6 +136,36 @@
             font-weight: 500;
         }
     }
+    &-item-rtl{
+        direction: rtl;
+        text-align: right;
+
+        #{$self}{
+            &-content,
+            &-price-wrapper{
+                text-align: right;
+            }
+            &-rating{
+                justify-content: flex-start;
+            }
+            &-rating-icon{
+                margin-right: 0;
+                margin-left: 6px;
+            }
+            &-rating-icon span:not(:last-child){
+                margin-right: 0;
+                margin-left: 2px;
+            }
+            &-price{
+                direction: rtl;
+                unicode-bidi: plaintext;
+            }
+            &-badge{
+                right: auto;
+                left: 20px;
+            }
+        }
+    }
     &-tab{
         & .nav-tabs{
             background-color: var(--tp-common-white);
@@ -695,6 +725,8 @@
         }
         &-content{
             padding: 45px 30px 41px;
+            direction: rtl;
+            text-align: right;
         }
         &-price{
             display: inline-block;
@@ -702,6 +734,8 @@
             font-weight: 500;
             font-size: 14px;     
             color: var(--tp-common-white);
+            direction: rtl;
+            unicode-bidi: plaintext;
             @include animation-control(.1s);
             
         }

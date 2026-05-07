@@ -8,14 +8,40 @@
 		email: string;
 		password: string;
 	}
+	interface Props {
+		emailLabel?: string;
+		emailPlaceholder?: string;
+		passwordLabel?: string;
+		passwordPlaceholder?: string;
+		rememberLabel?: string;
+		forgotPasswordLabel?: string;
+		submitLabel?: string;
+		emailRequiredMessage?: string;
+		invalidEmailMessage?: string;
+		passwordRequiredMessage?: string;
+		passwordMinMessage?: string;
+	}
+	const {
+		emailLabel = 'Your Email',
+		emailPlaceholder = 'shofy@mail.com',
+		passwordLabel = 'Password',
+		passwordPlaceholder = 'Min. 6 character',
+		rememberLabel = 'Remember me',
+		forgotPasswordLabel = 'Forgot Password?',
+		submitLabel = 'Login',
+		emailRequiredMessage = 'Email is required',
+		invalidEmailMessage = 'Invalid email',
+		passwordRequiredMessage = 'Password is required',
+		passwordMinMessage = 'Password Min. 6 characters'
+	}: Props = $props();
 	let showPass = writable(false);
 	let email = writable('');
 	let password = writable('');
 	let errors = writable<Record<string, string>>({});
 
 	const schema = yup.object({
-		email: yup.string().required('Email is required').email('Invalid email'),
-		password: yup.string().required('Password is required').min(6, 'Password Min. 6 characters')
+		email: yup.string().required(emailRequiredMessage).email(invalidEmailMessage),
+		password: yup.string().required(passwordRequiredMessage).min(6, passwordMinMessage)
 	});
 
 	async function onSubmit(event: Event) {
@@ -28,9 +54,9 @@
 			await schema.validate(formData, { abortEarly: false });
 			errors.set({});
 			alert(JSON.stringify(formData, null, 2));
-      // form reset;
-      $email = '';
-      $password = '';
+			// form reset;
+			$email = '';
+			$password = '';
 		} catch (validationErrors: any) {
 			let errorObj: Record<string, string> = {};
 			validationErrors.inner.forEach((err: any) => {
@@ -49,10 +75,10 @@
 	<div class="tp-login-input-wrapper">
 		<div class="tp-login-input-box">
 			<div class="tp-login-input">
-				<input id="email" type="email" placeholder="shofy@mail.com" bind:value={$email} />
+				<input id="email" type="email" placeholder={emailPlaceholder} bind:value={$email} />
 			</div>
 			<div class="tp-login-input-title">
-				<label for="email">Your Email</label>
+				<label for="email">{emailLabel}</label>
 			</div>
 			<ErrMsg msg={$errors.email} />
 		</div>
@@ -64,7 +90,7 @@
 						id="tp_password"
 						type={$showPass ? 'text' : 'password'}
 						name="password"
-						placeholder="Min. 6 character"
+						placeholder={passwordPlaceholder}
 						bind:value={$password}
 					/>
 				</div>
@@ -80,7 +106,7 @@
 					</span>
 				</div>
 				<div class="tp-login-input-title">
-					<label for="tp_password">Password</label>
+					<label for="tp_password">{passwordLabel}</label>
 				</div>
 			</div>
 			<ErrMsg msg={$errors.password} />
@@ -90,14 +116,14 @@
 	<div class="tp-login-suggestions d-sm-flex align-items-center justify-content-between mb-20">
 		<div class="tp-login-remember">
 			<input id="remember" type="checkbox" />
-			<label for="remember">Remember me</label>
+			<label for="remember">{rememberLabel}</label>
 		</div>
 		<div class="tp-login-forgot">
-			<a href="/forgot">Forgot Password?</a>
+			<a href="/forgot">{forgotPasswordLabel}</a>
 		</div>
 	</div>
 
 	<div class="tp-login-bottom">
-		<button type="submit" class="tp-login-btn w-100">Login</button>
+		<button type="submit" class="tp-login-btn w-100">{submitLabel}</button>
 	</div>
 </form>

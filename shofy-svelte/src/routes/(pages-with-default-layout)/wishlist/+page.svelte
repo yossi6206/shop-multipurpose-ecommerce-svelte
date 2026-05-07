@@ -6,13 +6,13 @@
 
 <div>
 	<!-- meta title start -->
-	<MetaTitle title="Wishlist Page - Shofy" />
+	<MetaTitle title="רשימת המשאלות - Shofy" />
 	<!-- meta title end -->
 
-	<main>
+	<main dir="rtl" lang="he">
 
 		<!-- breadcrumb area start -->
-		<BreadcrumbFour title="Wishlist" subtitle="Wishlist" />
+		<BreadcrumbFour title="רשימת המשאלות" subtitle="רשימת המשאלות" homeLabel="בית" />
 		<!-- breadcrumb area end -->
 
 		<!-- wishlist area start -->

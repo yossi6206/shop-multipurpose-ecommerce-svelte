@@ -6,12 +6,12 @@
 
 <div>
 	<!-- meta title start -->
-	<MetaTitle title="Login Page - Shofy" />
+	<MetaTitle title="התחברות - Shofy" />
 	<!-- meta title end -->
 
-	<main>
+	<main dir="rtl" lang="he">
 		<!-- breadcrumb area start -->
-		<BreadcrumbFour title="My account" subtitle="My account" center={true} />
+		<BreadcrumbFour title="החשבון שלי" subtitle="התחברות" homeLabel="בית" center={true} dir="rtl" />
 		<!-- breadcrumb area end -->
 
 		<!-- login area start -->

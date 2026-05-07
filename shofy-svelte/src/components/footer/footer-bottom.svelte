@@ -5,8 +5,8 @@
 				<div class="col-md-6">
 					<div class="tp-footer-copyright">
 						<p>
-					© {new Date().getFullYear()} כל הזכויות שמורות | תבנית Svelte מאת
-						<a href="/">ThemePure</a>.
+					© {new Date().getFullYear()} כל הזכויות שמורות | מאת
+						<a href="https://allintech.co.il">allintech.co.il</a>.
 						</p>
 					</div>
 				</div>

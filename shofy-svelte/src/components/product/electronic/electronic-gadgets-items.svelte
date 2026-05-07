@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { formatPrice } from '$lib';
 	import { RightArrowTwo } from '../../svg';
 	import product_data from '../../../data/product-data';
 	import ProductElectronicItem from './electronic-item.svelte';
@@ -8,18 +7,26 @@
 
 	const bannerData = [
 		{
-			bg: '/img/product/gadget/gadget-banner-1.jpg',
+			bg: '/img/product/gadget/gadget-banner-home.png',
 			title: 'מוצרי חידוש <br /> נבחרים',
 			price: 99
 		},
 		{
-			bg: '/img/product/gadget/gadget-banner-2.jpg',
+			bg: '/img/product/gadget/gadget-banner-home-2.png',
 			title: 'מוצרים <br /> מדורגים עליונים',
 			price: 55
 		}
 	];
 
 	let swiperEl: SwiperContainer;
+
+	const formatHebrewPrice = (price: number) =>
+		new Intl.NumberFormat('he-IL', {
+			style: 'currency',
+			currency: 'ILS',
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		}).format(price);
 
 	onMount(() => {
 		if (swiperEl) {
@@ -34,7 +41,7 @@
 	});
 </script>
 
-<section class="tp-product-gadget-area pt-80 pb-75">
+<section class="tp-product-gadget-area pt-80 pb-75" dir="rtl">
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-4 col-lg-5">
@@ -81,7 +88,7 @@
 								>
 									<div class="tp-product-gadget-banner-content">
 										<span class="tp-product-gadget-banner-price">
-											רק {formatPrice(item.price)}
+											רק {formatHebrewPrice(item.price)}
 										</span>
 										<h3 class="tp-product-gadget-banner-title">
 											<a href="/shop">{@html item.title}</a>

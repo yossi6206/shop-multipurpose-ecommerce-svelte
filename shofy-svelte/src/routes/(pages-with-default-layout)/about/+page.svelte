@@ -7,9 +7,9 @@
 	import AuthorArea from '../../../components/author/author-area.svelte';
 </script>
 
-<div>
+<div dir="rtl" style="font-family: 'Segoe UI', Arial, sans-serif;">
 	<!-- meta title start -->
-	<MetaTitle title="About Page - Shofy" />
+	<MetaTitle title="דף אודות - שופי" />
 	<!-- meta title end -->
 
 	<main>

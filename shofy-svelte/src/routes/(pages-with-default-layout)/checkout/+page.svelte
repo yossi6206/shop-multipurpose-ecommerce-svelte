@@ -6,12 +6,12 @@
 
 <div>
 	<!-- meta title start -->
-	<MetaTitle title="Checkout Page- Shofy" />
+	<MetaTitle title="עמוד תשלום - Shofy" />
 	<!-- meta title end -->
 
 	<main>
 		<!-- breadcrumb area start -->
-		<BreadcrumbFour title="Checkout" subtitle="Checkout" bg_clr={true} />
+		<BreadcrumbFour title="תשלום" subtitle="תשלום" homeLabel="בית" bg_clr={true} dir="rtl" />
 		<!-- breadcrumb area end -->
 
 		<!-- checkout area start -->

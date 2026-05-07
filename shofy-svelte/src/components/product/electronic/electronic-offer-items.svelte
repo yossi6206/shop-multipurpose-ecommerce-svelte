@@ -27,7 +27,7 @@
 	});
 </script>
 
-<section class="tp-product-offer grey-bg-2 pt-70 pb-80">
+<section class="tp-product-offer grey-bg-2 pt-70 pb-80" dir="rtl">
 	<div class="container">
 		<div class="row align-items-end">
 			<div class="col-xl-4 col-md-5 col-sm-6">
@@ -40,9 +40,9 @@
 			</div>
 			<div class="col-xl-8 col-md-7 col-sm-6">
 				<div
-					class="tp-product-offer-more-wrapper d-flex justify-content-sm-end p-relative z-index-1"
+					class="tp-product-offer-more-wrapper d-flex justify-content-sm-start p-relative z-index-1"
 				>
-					<div class="tp-product-offer-more mb-40 text-sm-end grey-bg-2">
+					<div class="tp-product-offer-more mb-40 text-sm-start grey-bg-2">
 						<a href="/shop" class="tp-btn tp-btn-2 tp-btn-blue">
 							הצג את כל העסקאות
 							<RightArrow />

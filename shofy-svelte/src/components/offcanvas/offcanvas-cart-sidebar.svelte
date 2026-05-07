@@ -10,7 +10,7 @@
   let { cartOffcanvas, handleCartOffcanvas }: IProps = $props();
 </script>
 
-<div class={`cartmini__area tp-all-font-roboto`} class:cartmini-opened={cartOffcanvas}>
+<div class={`cartmini__area tp-all-font-roboto`} class:cartmini-opened={cartOffcanvas} dir="rtl" lang="he">
   <div class="cartmini__wrapper d-flex justify-content-between flex-column">
     <div class="cartmini__top-wrapper">
       <div class="cartmini__top p-relative">
@@ -18,7 +18,7 @@
           <h4>עגלת קניות</h4>
         </div>
         <div class="cartmini__close">
-          <button onclick={handleCartOffcanvas} type="button" class="cartmini__close-btn cartmini-close-btn" aria-label="close">
+          <button onclick={handleCartOffcanvas} type="button" class="cartmini__close-btn cartmini-close-btn" aria-label="סגירה">
             <i class="fal fa-times"></i>
           </button>
         </div>
@@ -55,7 +55,7 @@
               <!-- svelte-ignore a11y_click_events_have_key_events -->
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <!-- svelte-ignore a11y_missing_attribute -->
-              <a onclick={() => removeCartProduct(item)} class="cartmini__del pointer" aria-label="delete">
+              <a onclick={() => removeCartProduct(item)} class="cartmini__del pointer" aria-label="מחיקה">
                 <i class="fa-regular fa-xmark"></i>
               </a>
             </div>

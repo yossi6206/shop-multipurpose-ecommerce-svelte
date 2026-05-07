@@ -12,7 +12,7 @@
 	let errors = writable<Record<string, string>>({});
 
 	const schema = yup.object({
-		email: yup.string().required('Email is required').email('Invalid email')
+		email: yup.string().required('נדרשת כתובת אימייל').email('כתובת אימייל לא תקינה')
 	});
 
 	async function onSubmit(event: Event) {
@@ -35,14 +35,14 @@
 	}
 </script>
 
-<div>
+<div dir="rtl">
 	<!-- meta title start -->
-	<MetaTitle title="Forgot Page - Shofy" />
+	<MetaTitle title="שכחתי סיסמה - Shofy" />
 	<!-- meta title end -->
 
 	<main>
 		<!-- breadcrumb area start -->
-		<BreadcrumbFour title="Forgot Password" subtitle="Reset Password" center={true} />
+		<BreadcrumbFour title="שכחתי סיסמה" subtitle="איפוס סיסמה" homeLabel="דף הבית" center={true} dir="rtl" />
 		<!-- breadcrumb area end -->
 
 		<!-- forgot area start -->
@@ -58,8 +58,8 @@
 					<div class="col-xl-6 col-lg-8">
 						<div class="tp-login-wrapper">
 							<div class="tp-login-top text-center mb-30">
-								<h3 class="tp-login-title">Reset Password</h3>
-								<p>Enter your email address to request password reset.</p>
+								<h3 class="tp-login-title">איפוס סיסמה</h3>
+								<p>הזן את כתובת האימייל שלך לבקשת איפוס סיסמה.</p>
 							</div>
 							<div class="tp-login-option">
 								<form onsubmit={onSubmit}>
@@ -71,20 +71,21 @@
 													type="email"
 													placeholder="shofy@mail.com"
 													bind:value={$email}
+													style="text-align: right;"
 												/>
 											</div>
 											<div class="tp-login-input-title">
-												<label for="email">Your Email</label>
+												<label for="email">כתובת האימייל שלך</label>
 											</div>
 											<ErrMsg msg={$errors.email} />
 										</div>
 									</div>
 									<div class="tp-login-bottom mb-15">
-										<button type="submit" class="tp-login-btn w-100">Send Mail</button>
+										<button type="submit" class="tp-login-btn w-100">שלח מייל</button>
 									</div>
 									<div class="tp-login-suggetions d-sm-flex align-items-center justify-content-center">
 										<div class="tp-login-forgot">
-											<span>Remember Password? <a href="/login"> Login</a></span>
+											<span>זוכר את הסיסמה? <a href="/login"> התחבר</a></span>
 										</div>
 									</div>
 								</form>

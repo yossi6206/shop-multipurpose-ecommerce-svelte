@@ -15,7 +15,7 @@
 						</div>
 						<div class="tp-counter-content">
 							<h4><span class="purecounter">750</span>+</h4>
-							<p>Happy Customers</p>
+							<p>לקוחות מרוצים</p>
 						</div>
 					</div>
 					<div class="tp-counter-item d-flex align-items-start mb-30">
@@ -26,7 +26,7 @@
 						</div>
 						<div class="tp-counter-content">
 							<h4><span class="purecounter">2016</span></h4>
-							<p>Founding Year</p>
+							<p>שנת הקמה</p>
 						</div>
 					</div>
 					<div class="tp-counter-item d-flex align-items-start mb-30">
@@ -37,7 +37,7 @@
 						</div>
 						<div class="tp-counter-content">
 							<h4><span class="purecounter">120</span>+</h4>
-							<p>Product Orders</p>
+							<p>הזמנות מוצרים</p>
 						</div>
 					</div>
 					<div class="tp-counter-item d-flex align-items-start mb-30">
@@ -48,7 +48,7 @@
 						</div>
 						<div class="tp-counter-content">
 							<h4><span class="purecounter">60</span>+</h4>
-							<p>Quality Products</p>
+							<p>מוצרים איכותיים</p>
 						</div>
 					</div>
 				</div>

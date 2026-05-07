@@ -10,43 +10,43 @@
   // Slider data
   const slider_data = [
     {
-      title: "About our <br> Online Store",
+      title: "אודות <br> החנות המקוונת שלנו",
       subtitle_1:
-        "At our eCommerce site, we are passionate about providing our customers with the best possible shopping experience. From our extensive product selection to our exceptional customer service, we are committed to exceeding your expectations.",
+        "באתר המסחר האלקטרוני שלנו, אנו נלהבים לספק ללקוחותינו את חווית הקנייה הטובה ביותר. ממגוון המוצרים הרחב שלנו ועד לשירות הלקוחות המעולה — אנו מחויבים לעלות על הציפיות שלכם.",
       subtitle_2:
-        "So start browsing today and find the perfect products to suit your needs!",
+        "אז התחילו לגלוש היום ומצאו את המוצרים המושלמים שמתאימים לצרכים שלכם!",
       img: "/img/history/history-1.jpg",
-      thumb_text: "Welcome to our <br> Shofy eCommerce Theme",
+      thumb_text: "ברוכים הבאים <br> לחנות Shofy",
       year: 2016,
     },
     {
-      title: "About our <br> Online Store",
+      title: "אודות <br> החנות המקוונת שלנו",
       subtitle_1:
-        "At our eCommerce site, we are passionate about providing our customers with the best possible shopping experience. From our extensive product selection to our exceptional customer service, we are committed to exceeding your expectations.",
+        "באתר המסחר האלקטרוני שלנו, אנו נלהבים לספק ללקוחותינו את חווית הקנייה הטובה ביותר. ממגוון המוצרים הרחב שלנו ועד לשירות הלקוחות המעולה — אנו מחויבים לעלות על הציפיות שלכם.",
       subtitle_2:
-        "So start browsing today and find the perfect products to suit your needs!",
+        "אז התחילו לגלוש היום ומצאו את המוצרים המושלמים שמתאימים לצרכים שלכם!",
       img: "/img/history/history-2.jpg",
-      thumb_text: "Welcome to our <br> Shofy eCommerce Theme",
+      thumb_text: "ברוכים הבאים <br> לחנות Shofy",
       year: 2017,
     },
     {
-      title: "About our <br> Online Store",
+      title: "אודות <br> החנות המקוונת שלנו",
       subtitle_1:
-        "At our eCommerce site, we are passionate about providing our customers with the best possible shopping experience. From our extensive product selection to our exceptional customer service, we are committed to exceeding your expectations.",
+        "באתר המסחר האלקטרוני שלנו, אנו נלהבים לספק ללקוחותינו את חווית הקנייה הטובה ביותר. ממגוון המוצרים הרחב שלנו ועד לשירות הלקוחות המעולה — אנו מחויבים לעלות על הציפיות שלכם.",
       subtitle_2:
-        "So start browsing today and find the perfect products to suit your needs!",
+        "אז התחילו לגלוש היום ומצאו את המוצרים המושלמים שמתאימים לצרכים שלכם!",
       img: "/img/history/history-1.jpg",
-      thumb_text: "Welcome to our <br> Shofy eCommerce Theme",
+      thumb_text: "ברוכים הבאים <br> לחנות Shofy",
       year: 2018,
     },
     {
-      title: "About our <br> Online Store",
+      title: "אודות <br> החנות המקוונת שלנו",
       subtitle_1:
-        "At our eCommerce site, we are passionate about providing our customers with the best possible shopping experience. From our extensive product selection to our exceptional customer service, we are committed to exceeding your expectations.",
+        "באתר המסחר האלקטרוני שלנו, אנו נלהבים לספק ללקוחותינו את חווית הקנייה הטובה ביותר. ממגוון המוצרים הרחב שלנו ועד לשירות הלקוחות המעולה — אנו מחויבים לעלות על הציפיות שלכם.",
       subtitle_2:
-        "So start browsing today and find the perfect products to suit your needs!",
+        "אז התחילו לגלוש היום ומצאו את המוצרים המושלמים שמתאימים לצרכים שלכם!",
       img: "/img/history/history-2.jpg",
-      thumb_text: "Welcome to our <br> Shofy eCommerce Theme",
+      thumb_text: "ברוכים הבאים <br> לחנות Shofy",
       year: 2019,
     },
   ];

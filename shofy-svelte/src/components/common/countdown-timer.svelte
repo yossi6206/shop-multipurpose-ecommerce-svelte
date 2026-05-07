@@ -39,9 +39,9 @@
   });
 </script>
 
-<ul>
-	<li><span>{timer.days}</span> Day</li>
-	<li><span>{timer.hours}</span> Hrs</li>
-	<li><span>{timer.minutes}</span> Min</li>
-	<li><span>{timer.seconds}</span> Sec</li>
+<ul dir="rtl">
+	<li><span>{timer.seconds}</span> שנ'</li>
+	<li><span>{timer.minutes}</span> דק'</li>
+	<li><span>{timer.hours}</span> שע'</li>
+	<li><span>{timer.days}</span> יום</li>
 </ul>

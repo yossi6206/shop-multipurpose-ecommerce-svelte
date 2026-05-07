@@ -12,7 +12,7 @@
   <!-- Image -->
   <td class="tp-cart-img">
     <a href={`/product-details/${item.id}`} style="background-color: #F2F3F5; display: block;">
-      <img src={item.img} alt="cart-img" />
+      <img src={item.img} alt={item.title} />
     </a>
   </td>
 
@@ -29,7 +29,7 @@
   <!-- Add to Cart -->
   <td class="tp-cart-add-to-cart">
     <button onclick={() => addCartProduct(item)} type="button" class="tp-btn tp-btn-2 tp-btn-blue">
-      Add To Cart
+      הוסף לעגלה
     </button>
   </td>
 
@@ -37,7 +37,7 @@
   <td class="tp-cart-action">
     <button class="tp-cart-action-btn" onclick={() => wishlistStore.removeWishlistProduct(item)}>
       <Remove />
-      <span>Remove</span>
+      <span>הסר</span>
     </button>
   </td>
 </tr>
