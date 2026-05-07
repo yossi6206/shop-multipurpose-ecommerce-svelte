@@ -1,0 +1,16 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.178 Range Slider css start
+/*----------------------------------------*/
+
+
+.rangeSlider {
+  border-radius: 0 !important;
+  margin: 0 !important;
+  background-color: var(--slider-bg,#d1d5db) !important;
+}
+
+.rangeSlider .rangeNub {
+  background-color: var(--tp-theme-primary) !important;
+}

@@ -1,0 +1,30 @@
+
+// font url
+
+$font-url: 'https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Heebo:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&family=Oregano&family=Roboto:wght@300;400;500;700;900&display=swap';
+
+// font family
+$font-family: (
+    'ff': (
+        'body': "'Heebo', 'Jost', sans-serif",
+        'heading': "'Heebo', 'Jost', sans-serif",
+        'p': "'Heebo', 'Jost', sans-serif",
+        'jost': "'Heebo', 'Jost', sans-serif",
+        'fontawesome': '"Font Awesome 6 Pro"',
+        'roboto': "'Heebo', 'Roboto', sans-serif",
+        'oregano': "'Oregano', cursive",
+        'charm': "'Charm', cursive",
+    )
+);
+
+
+
+// font size
+$font-size: (
+    'fz': (
+        'body': 14px,
+        'p': 14px,
+    )
+);
+
+
