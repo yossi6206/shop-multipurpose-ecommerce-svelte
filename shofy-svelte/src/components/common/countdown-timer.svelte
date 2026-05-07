@@ -26,7 +26,7 @@
 		seconds: 0
 	});
 
-	let interval: number; // Declare the interval variable first
+	let interval: ReturnType<typeof startTimer>; // Declare the interval variable first
 
   // Start the timer and assign the interval
   interval = startTimer(endTime, (updatedTimer) => {

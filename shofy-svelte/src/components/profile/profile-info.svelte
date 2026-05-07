@@ -1,108 +1,88 @@
 <script lang="ts">
-	import { UserThree, Email, PhoneTwo, Address } from '../svg';
-	import NiceSelect from '../ui/nice-select.svelte';
-	const changeHandler = (event:{value: string; text: string }) => {
-    console.log(event.value);
-  };
+	import { UserThree, Email } from '../svg';
+	import { authStore } from '$lib/auth-store';
+	import { supabase } from '$lib/supabase';
+	import { successToast, errorToast } from '$lib/toast';
+
+	$: user = $authStore.user;
+
+	let fullName = '';
+	let emailVal = '';
+	let saving = false;
+
+	// Sync fields when user loads
+	$: if (user) {
+		fullName = user.user_metadata?.full_name || user.user_metadata?.name || '';
+		emailVal = user.email ?? '';
+	}
+
+	async function handleSave(e: Event) {
+		e.preventDefault();
+		if (!user) return;
+		saving = true;
+
+		// Update user_metadata in Supabase Auth
+		const { error: authError } = await supabase.auth.updateUser({
+			data: { full_name: fullName }
+		});
+
+		// Update public.profiles table
+		const { error: dbError } = await supabase
+			.from('profiles')
+			.update({ full_name: fullName, email: emailVal, updated_at: new Date().toISOString() })
+			.eq('user_id', user.id);
+
+		saving = false;
+
+		if (authError || dbError) {
+			errorToast((authError || dbError)?.message ?? 'שגיאה בשמירה');
+		} else {
+			successToast('הפרופיל עודכן בהצלחה!');
+		}
+	}
 </script>
 
 <div class="profile__info">
 	<h3 class="profile__info-title">פרטים אישיים</h3>
 	<div class="profile__info-content">
-		<!-- form start -->
-		<form>
+		<form onsubmit={handleSave}>
 			<div class="row">
 				<div class="col-xxl-6 col-md-6">
 					<div class="profile__input-box">
 						<div class="profile__input">
-							<input type="text" placeholder="הכנס שם משתמש" value="Shahnewaz Sakil" />
-							<span>
-								<UserThree />
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xxl-6 col-md-6">
-					<div class="profile__input-box">
-						<div class="profile__input">
-							<input type="email" placeholder="הכנס כתובת אימייל" value="example@mail.com" />
-							<span>
-								<Email />
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-xxl-6 col-md-6">
-					<div class="profile__input-box">
-						<div class="profile__input">
-							<input type="text" placeholder="הכנס שם משתמש פייסבוק" value="shahnewzname" />
-							<span>
-								<i class="fa-brands fa-facebook-f"></i>
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-xxl-6 col-md-6">
-					<div class="profile__input-box">
-						<div class="profile__input">
-							<input type="text" placeholder="הכנס שם משתמש טוויטר" value="shahnewzname" />
-							<span><i class="fa-brands fa-twitter"></i></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-xxl-6 col-md-6">
-					<div class="profile__input-box">
-						<div class="profile__input">
-							<input type="text" placeholder="הכנס מספר טלפון" value="0123 456 7889" />
-							<span>
-								<PhoneTwo />
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-xxl-6 col-md-6">
-					<div class="profile__input-box">
-						<div class="profile__input">
-							<NiceSelect
-								options={[
-									{ value: 'Male', text: 'זכר' },
-									{ value: 'Female', text: 'נקבה' },
-									{ value: 'Others', text: 'אחר' }
-								]}
-								name="Gender"
-								defaultCurrent={0}
-								onchange={changeHandler}
-								placeholder="מגדר"
+							<input
+								type="text"
+								placeholder="שם מלא"
+								bind:value={fullName}
 							/>
-						</div>
-					</div>
-				</div>
-				<div class="col-xxl-12">
-					<div class="profile__input-box">
-						<div class="profile__input">
-							<input type="text" placeholder="הכנס כתובת" value="3304 Randall Drive" />
-							<span>
-								<Address />
-							</span>
+							<span><UserThree /></span>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-xxl-12">
+				<div class="col-xxl-6 col-md-6">
 					<div class="profile__input-box">
 						<div class="profile__input">
-							<textarea placeholder="הכנס ביוגרפיה">שלום, זוהי הביוגרפיה שלי...</textarea>
+							<input
+								type="email"
+								placeholder="כתובת אימייל"
+								value={emailVal}
+								disabled
+								style="opacity:0.6;cursor:not-allowed;"
+							/>
+							<span><Email /></span>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-xxl-12">
 					<div class="profile__btn">
-						<button type="submit" class="tp-btn">עדכן פרופיל</button>
+						<button type="submit" class="tp-btn" disabled={saving}>
+							{saving ? 'שומר...' : 'עדכן פרופיל'}
+						</button>
 					</div>
 				</div>
 			</div>
 		</form>
-		<!-- form end -->
 	</div>
 </div>

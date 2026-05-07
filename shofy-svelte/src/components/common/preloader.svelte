@@ -19,7 +19,7 @@
               <img src="/img/logo/preloader/preloader-icon.svg" alt="">
            </div>
            <h3 class="tp-preloader-title">Shofy</h3>
-           <p class="tp-preloader-subtitle">Loading</p>
+           <p class="tp-preloader-subtitle">טוען</p>
         </div>
      </div>
   </div>  

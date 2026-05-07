@@ -6,7 +6,7 @@
 	let { product }: { product: IProduct } = $props();
 </script>
 
-<section class="tp-product-details-area">
+<section class="tp-product-details-area" dir="rtl">
 	<div class="tp-product-details-top pb-115">
 		<div class="container">
 			<div class="row">
@@ -18,7 +18,7 @@
 				<!-- col end -->
 				<div class="col-xl-5 col-lg-6">
 					<!-- product details wrapper -->
-					<ProductDetailsWrapper {product} />
+					<ProductDetailsWrapper {product} isShowBottom={true} />
 					<!-- product details wrapper -->
 				</div>
 			</div>

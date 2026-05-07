@@ -3,7 +3,7 @@
 </script>
 
 <div class="tp-product-details-review-rating-item d-flex align-items-center">
-  <span>{star} Star</span>
+  <span>{star} כוכבים</span>
   <div class="tp-product-details-review-rating-bar">
     <span
       class="tp-product-details-review-rating-bar-inner"

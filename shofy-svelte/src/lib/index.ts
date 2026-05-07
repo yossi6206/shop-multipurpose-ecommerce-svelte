@@ -4,9 +4,9 @@ import type { IProduct } from "../types/product-type";
 
 // place files you want to import through the `$lib` alias in this folder.
 export function formatPrice(price: number,showDecimals=true) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("he-IL", {
     style: "currency",
-    currency: "USD",
+    currency: "ILS",
     minimumFractionDigits: showDecimals ? 2 : 0,
     maximumFractionDigits: showDecimals ? 2 : 0
   }).format(price);

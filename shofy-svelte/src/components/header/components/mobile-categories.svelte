@@ -22,7 +22,7 @@
 <div class="offcanvas__category pb-40">
   <button onclick={toggleCategoryActive} class="tp-offcanvas-category-toggle">
     <i class="fa-solid fa-bars"></i>
-    All Categories
+    כל הקטגוריות
   </button>
   <div class="tp-category-mobile-menu">
     <nav class={`tp-category-menu-content ${isCategoryActive ? 'active' : ''}`}>

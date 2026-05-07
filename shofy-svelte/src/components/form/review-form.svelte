@@ -15,9 +15,9 @@
   let errors = writable<{ [key: string]: string }>({});
 
   const schema = yup.object({
-    name: yup.string().required('Name is required'),
-    email: yup.string().email('Invalid email').required('Email is required'),
-    message: yup.string().required('Message is required')
+    name: yup.string().required('שם הוא שדה חובה'),
+    email: yup.string().email('כתובת אימייל לא תקינה').required('אימייל הוא שדה חובה'),
+    message: yup.string().required('ביקורת היא שדה חובה')
   });
 
   async function onSubmit(event: Event) {
@@ -47,7 +47,7 @@
 
   <form class="tp-product-details-review-form" onsubmit={onSubmit}>
     <div class="tp-product-details-review-form-rating d-flex align-items-center">
-      <p>Your Rating :</p>
+      <p>הדירוג שלך:</p>
       <div class="tp-product-details-review-form-rating-icon d-flex align-items-center">
         <span><i class="fa-solid fa-star"></i></span>
         <span><i class="fa-solid fa-star"></i></span>
@@ -59,19 +59,19 @@
     <div class="tp-product-details-review-input-wrapper">
       <div class="tp-product-details-review-input-box">
         <div class="tp-product-details-review-input">
-          <textarea id="message" bind:value={$message} placeholder="Write your message here..."></textarea>
+          <textarea id="message" bind:value={$message} placeholder="כתוב כאן את הביקורת שלך..."></textarea>
         </div>
         <div class="tp-product-details-review-input-title">
-          <label for="message">Write Review</label>
+          <label for="message">כתוב ביקורת</label>
         </div>
         <ErrMsg msg={$errors.message} />
       </div>
       <div class="tp-product-details-review-input-box">
         <div class="tp-product-details-review-input">
-          <input id="name" type="text" bind:value={$name} placeholder="Shahnewaz Sakil" />
+          <input id="name" type="text" bind:value={$name} placeholder="השם שלך" />
         </div>
         <div class="tp-product-details-review-input-title">
-          <label for="name">Your Name</label>
+          <label for="name">השם שלך</label>
         </div>
         <ErrMsg msg={$errors.name} />
       </div>
@@ -80,7 +80,7 @@
           <input id="email" type="email" bind:value={$email} placeholder="shofy@mail.com" />
         </div>
         <div class="tp-product-details-review-input-title">
-          <label for="email">Your Email</label>
+          <label for="email">האימייל שלך</label>
         </div>
         <ErrMsg msg={$errors.email} />
       </div>
@@ -88,10 +88,10 @@
     <div class="tp-product-details-review-suggetions mb-20">
       <div class="tp-product-details-review-remeber">
         <input id="remember" type="checkbox" />
-        <label for="remember">Save my name, email, and website in this browser for the next time I comment.</label>
+        <label for="remember">שמור את השם והאימייל שלי בדפדפן לפעם הבאה שאכתוב תגובה.</label>
       </div>
     </div>
     <div class="tp-product-details-review-btn-wrapper">
-      <button type="submit" class="tp-product-details-review-btn">Submit</button>
+      <button type="submit" class="tp-product-details-review-btn">שליחה</button>
     </div>
   </form>

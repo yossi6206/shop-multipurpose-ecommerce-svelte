@@ -33,7 +33,7 @@ export function useTimer(endTime: Date): Timer {
   };
 } 
 
-export function startTimer(endTime: Date, callback: (timer: Timer) => void) {
+export function startTimer(endTime: Date, callback: (timer: Timer) => void): ReturnType<typeof setInterval> {
   const interval = setInterval(() => {
     const timer = useTimer(endTime);
     callback(timer);
@@ -53,6 +53,6 @@ export function startTimer(endTime: Date, callback: (timer: Timer) => void) {
 
 
 
-export function stopTimer(interval: number) {
+export function stopTimer(interval: ReturnType<typeof setInterval>) {
   clearInterval(interval);
 }

@@ -40,10 +40,10 @@
 						{ value: 'beauty', text: 'יופי' },
 						{ value: 'jewelry', text: 'תכשיטים' }
 					]}
-					name="Select category"
+					name="בחר קטגוריה"
 					defaultCurrent={0}
 					onchange={changeHandler}
-					placeholder="Select category"
+					placeholder="בחר קטגוריה"
 				/>
 			</div>
 

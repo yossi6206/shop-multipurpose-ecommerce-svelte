@@ -1,5 +1,10 @@
 <script lang="ts">
   import { formatPrice } from '$lib';
+  import {
+    translateProductDescription,
+    translateProductList,
+    translateProductText
+  } from '$lib/hebrew-product';
   import productStore from '../../store/product-store';
 	import type { IProduct } from '../../types/product-type';
 	import { AskQuestion, CompareThree, Minus, PlusSm, WishlistThree } from '../svg';
@@ -20,6 +25,7 @@
 
   // Computed properties
   const hasColorData = $state(product.imageURLs.some(item => item?.color && item?.color?.name))
+  const translatedDescription = $derived(translateProductDescription(product));
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -27,14 +33,14 @@
 
 <div class="tp-product-details-wrapper has-sticky">
   <div class="tp-product-details-category">
-    <span>{product.parent}</span>
+    <span>{translateProductText(product.parent)}</span>
   </div>
-  <h3 class="tp-product-details-title">{product.title}</h3>
+  <h3 class="tp-product-details-title">{translateProductText(product.title, product)}</h3>
 
   <!-- inventory details -->
   <div class="tp-product-details-inventory d-flex align-items-center mb-10">
     <div class="tp-product-details-stock mb-10">
-      <span>{product.status}</span>
+      <span>{product.status === 'in-stock' ? 'במלאי' : product.status === 'out-of-stock' ? 'אזל מהמלאי' : product.status}</span>
     </div>
     <div class="tp-product-details-rating-wrapper d-flex align-items-center mb-10">
       <div class="tp-product-details-rating">
@@ -43,13 +49,13 @@
         {/each}
       </div>
       <div class="tp-product-details-reviews">
-        <span>({product.reviews?.length || 0} Reviews)</span>
+        <span>({product.reviews?.length || 0} ביקורות)</span>
       </div>
     </div>
   </div>
   <p>
-    {textMore ? product.description : `${product.description.substring(0, 100)}...`}
-    <span onclick={() => (textMore = !textMore)}>{textMore ? 'See less' : 'See more'}</span>
+    {textMore ? translatedDescription : `${translatedDescription.substring(0, 100)}...`}
+    <span onclick={() => (textMore = !textMore)}>{textMore ? 'קרא פחות' : 'קרא עוד'}</span>
   </p>
 
   <!-- price -->
@@ -70,7 +76,7 @@
   {#if hasColorData}
     <div class="tp-product-details-variation">
       <div class="tp-product-details-variation-item">
-        <h4 class="tp-product-details-variation-title">Color :</h4>
+        <h4 class="tp-product-details-variation-title">צבע :</h4>
         <div class="tp-product-details-variation-list">
           {#each product.imageURLs as item}
             <button
@@ -81,7 +87,7 @@
             >
               <span data-bg-color={item.color?.clrCode} style={`background-color:${item.color?.clrCode}`}></span>
               {#if item.color && item.color.name}
-                <span class="tp-color-variation-tootltip">{item.color.name}</span>
+                <span class="tp-color-variation-tootltip">{translateProductText(item.color.name)}</span>
               {/if}
             </button>
           {/each}
@@ -100,7 +106,7 @@
 
   <!-- actions -->
   <div class="tp-product-details-action-wrapper">
-    <h3 class="tp-product-details-action-title">Quantity</h3>
+    <h3 class="tp-product-details-action-title">כמות</h3>
     <div class="tp-product-details-action-item-wrapper d-flex align-items-center">
       <div class="tp-product-details-quantity">
         <div class="tp-product-quantity mb-15 mr-15">
@@ -115,28 +121,28 @@
       </div>
       <div class="tp-product-details-add-to-cart mb-15 w-100">
         <button class="tp-product-details-add-to-cart-btn w-100" onclick={() => addCartProduct(product)}>
-          Add To Cart
+          הוסף לסל
         </button>
       </div>
     </div>
     {#if !modalPrd}
       <a href={`/product-details/${product.id}`} class="tp-product-details-buy-now-btn w-100 text-center">
-        Buy Now
+        קנה עכשיו
       </a>
     {/if}
   </div>
   <div class="tp-product-details-action-sm">
     <button onclick="{() => add_compare_product(product)}" type="button" class="tp-product-details-action-sm-btn">
       <CompareThree />
-      Compare
+      השוואה
     </button>
     <button onclick="{() => wishlistStore.addWishlistProduct(product)}" type="button" class="tp-product-details-action-sm-btn">
       <WishlistThree/>
-      Add Wishlist
+      הוסף למועדפים
     </button>
     <button type="button" class="tp-product-details-action-sm-btn">
       <AskQuestion />
-      Ask a question
+      שאל שאלה
     </button>
   </div>
 
@@ -144,20 +150,22 @@
     <div>
       <div class="tp-product-details-query">
         <div class="tp-product-details-query-item d-flex align-items-center">
-          <span>SKU: </span>
+          <span>מק״ט: </span>
           <p>{product.sku}</p>
         </div>
         <div class="tp-product-details-query-item d-flex align-items-center">
-          <span>Category: </span>
-          <p>{product.parent}</p>
+          <span>קטגוריה: </span>
+          <p>{translateProductText(product.parent)}</p>
         </div>
-        <div class="tp-product-details-query-item d-flex align-items-center">
-          <span>Tag: </span>
-          <p>Android</p>
-        </div>
+        {#if product.tags && product.tags.length > 0}
+          <div class="tp-product-details-query-item d-flex align-items-center">
+            <span>תגיות: </span>
+            <p>{translateProductList(product.tags)}</p>
+          </div>
+        {/if}
       </div>
       <div class="tp-product-details-social">
-        <span>Share: </span>
+        <span>שיתוף: </span>
         <a href="#" aria-label="fb"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#" aria-label="twitter"><i class="fa-brands fa-twitter"></i></a>
         <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -165,12 +173,12 @@
       </div>
       <div class="tp-product-details-msg mb-15">
         <ul>
-          <li>30 days easy returns</li>
-          <li>Order yours before 2.30pm for same day dispatch</li>
+          <li>30 ימי החזרה ללא תשלום</li>
+          <li>הזמנות עד 14:30 - משלוח באותו היום</li>
         </ul>
       </div>
       <div class="tp-product-details-payment d-flex align-items-center flex-wrap justify-content-between">
-        <p>Guaranteed safe <br> & secure checkout</p>
+        <p>תשלום בטוח <br> ומאובטח</p>
         <img src="/img/product/icons/payment-option.png" alt="" />
       </div>
     </div>

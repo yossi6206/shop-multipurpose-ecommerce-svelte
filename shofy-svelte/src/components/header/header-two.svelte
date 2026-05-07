@@ -95,7 +95,7 @@
               <div class="tp-header-bottom-right d-flex align-items-center justify-content-end pl-30">
                 <div class="tp-header-search-2 d-none d-sm-block">
                   <form onsubmit={handleSubmit}>
-                    <input type="text" placeholder="Search for Products..." bind:value={searchText} />
+                    <input type="text" placeholder="חפש מוצרים..." bind:value={searchText} />
                     <button type="submit">
                       <Search/>
                     </button>

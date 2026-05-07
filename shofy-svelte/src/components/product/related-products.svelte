@@ -54,12 +54,12 @@
 	});
 </script>
 
-<section class="tp-related-product pt-95 pb-120">
+<section class="tp-related-product pt-95 pb-120" dir="rtl">
 	<div class="container">
 		<div class="row">
 			<div class="tp-section-title-wrapper-6 text-center mb-40">
-				<span class="tp-section-title-pre-6">Next day Products</span>
-				<h3 class="tp-section-title-6">Related Products</h3>
+				<span class="tp-section-title-pre-6">מומלצים נוספים</span>
+				<h3 class="tp-section-title-6">מוצרים דומים</h3>
 			</div>
 		</div>
 		<div class="row">

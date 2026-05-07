@@ -2,13 +2,14 @@
 	import { totalPriceQuantity } from '../../../store/cart-store';
 	import { wishlistStore } from '../../../store/wishlist-store';
 	import { User, Compare, Wishlist, CartBag, MenuIcon } from '../../svg';
+	import { isLoggedIn, userDisplayName } from '$lib/auth-store';
+
 	type IProps = {
 		handleCartOffcanvas: () => void;
-    handleOpenMobileMenu: () => void;
+		handleOpenMobileMenu: () => void;
 	};
-	let { handleCartOffcanvas,handleOpenMobileMenu }: IProps = $props();
-	// wishlist
-	const {wishlists} = wishlistStore;
+	let { handleCartOffcanvas, handleOpenMobileMenu }: IProps = $props();
+	const { wishlists } = wishlistStore;
 </script>
 
 <div class="tp-header-main-right d-flex align-items-center justify-content-end" style="gap: 20px;">
@@ -19,8 +20,13 @@
 				<span><User /></span>
 			</div>
 			<div class="tp-header-login-content d-none d-xl-block">
-				<span>Hello, Sign In</span>
-				<h5 class="tp-header-login-title">Your Account</h5>
+				{#if $isLoggedIn}
+					<span>שלום,</span>
+					<h5 class="tp-header-login-title">{$userDisplayName}</h5>
+				{:else}
+					<span>Hello, Sign In</span>
+					<h5 class="tp-header-login-title">Your Account</h5>
+				{/if}
 			</div>
 		</a>
 	</div>

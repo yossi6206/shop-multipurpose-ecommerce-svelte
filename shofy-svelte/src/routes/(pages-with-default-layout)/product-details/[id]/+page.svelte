@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import type { IProduct } from '../../../../types/product-type';
 	import { products, loadProducts } from '$lib/products-loader';
+	import { translateProductText } from '$lib/hebrew-product';
 	import productStore from '../../../../store/product-store';
 	import ProductDetailsBreadcrumb from '../../../../components/product-details/product-details-breadcrumb.svelte';
 	import ProductDetailsArea from '../../../../components/product-details/product-details-area.svelte';
@@ -46,7 +47,7 @@
 </script>
 
 <!-- meta title start -->
-<MetaTitle title={product ? `${product.title} - Shofy` : 'Product Details - Shofy'} />
+<MetaTitle title={product ? `${translateProductText(product.title, product)} - Shofy` : 'פרטי מוצר - Shofy'} />
 <!-- meta title end -->
 
 {#if product}
@@ -64,9 +65,9 @@
 {:else if isLoading}
 	<div class="text-center mt-100 mb-100">
 		<div class="spinner-border" role="status">
-			<span class="visually-hidden">Loading...</span>
+			<span class="visually-hidden">טוען...</span>
 		</div>
 	</div>
 {:else}
-	<div class="text-center mt-100">Product not found with ID: {page.params.id}</div>
+	<div class="text-center mt-100" dir="rtl">לא נמצא מוצר עם מזהה: {page.params.id}</div>
 {/if}

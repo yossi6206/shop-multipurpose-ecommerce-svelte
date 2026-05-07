@@ -19,7 +19,7 @@
 				<li class="has-dropdown has-mega-menu" class:dropdown-opened={$isActiveMenu === menu.title}>
 					<!-- svelte-ignore a11y_missing_attribute -->
 					<a class:expanded={$isActiveMenu === menu.title}>
-						Home
+						בית
 						<button
 							onclick={() => handleOpenSubMenu(menu.title)}
 							class="dropdown-toggle-btn"

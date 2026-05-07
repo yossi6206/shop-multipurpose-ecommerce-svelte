@@ -6,6 +6,7 @@
 	import { wishlistStore } from '../../../store/wishlist-store';
 	import { QuickView, Wishlist } from '../../svg';
 	import { formatPrice } from '$lib';
+	import { translateProductText } from '$lib/hebrew-product';
 	import CartThree from '../../svg/cart/cart-three.svelte';
 	import { handleModalProduct } from '../../../store/product-store';
 
@@ -22,7 +23,7 @@
 	const itemInCart = isItemInCart(item);
 </script>
 
-<div class={`tp-product-item-3 ${primary_style ? 'tp-product-style-primary' : ''} mb-50 ${isCenter ? 'text-center' : ''}`}>
+<div class={`tp-product-item-3 ${primary_style ? 'tp-product-style-primary' : ''} mb-50 ${isCenter ? 'text-center' : ''}`} dir="rtl">
 	<div
 		class="tp-product-thumb-3 mb-15 fix p-relative z-index-1"
 		style="background-color: {style_2 ? '#f6f6f6' : '#fff'};"
@@ -36,7 +37,7 @@
 				{#if !$itemInCart}
 					<button onclick={() => addCartProduct(item)} type="button" class="tp-product-action-btn-3 tp-product-add-cart-btn">
 						<CartThree />
-						<span class="tp-product-tooltip">Add to Cart</span>
+						<span class="tp-product-tooltip">הוסף לסל</span>
 					</button>
 				{/if}
 				{#if $itemInCart}
@@ -45,7 +46,7 @@
 						class="tp-product-action-btn-3 tp-product-add-cart-btn text-center active"
 					>
 						<CartThree />
-						<span class="tp-product-tooltip">View Cart</span>
+						<span class="tp-product-tooltip">הצג סל</span>
 					</a>
 				{/if}
 
@@ -55,7 +56,7 @@
 					onclick={() => handleModalProduct(item)}
 				>
 					<QuickView />
-					<span class="tp-product-tooltip">Quick View</span>
+					<span class="tp-product-tooltip">תצוגה מהירה</span>
 				</button>
 
 				<button
@@ -65,7 +66,7 @@
 				>
 					<Wishlist />
 					<span class="tp-product-tooltip">
-            {$itemInWishlist ? 'Remove From Wishlist' : 'Add To Wishlist'}
+            {$itemInWishlist ? 'הסר מרשימת המשאלות' : 'הוסף לרשימת משאלות'}
           </span>
 				</button>
 			</div>
@@ -78,20 +79,20 @@
 					type="button"
 					class="tp-product-add-cart-btn-large"
 				>
-					Add To Cart
+					הוסף לסל
 				</button>
 			{/if}
 			{#if $itemInCart}
-				<a href="/cart" class="tp-product-add-cart-btn-large text-center"> View Cart </a>
+				<a href="/cart" class="tp-product-add-cart-btn-large text-center"> הצג סל </a>
 			{/if}
 		</div>
 	</div>
 	<div class="tp-product-content-3">
 		<div class="tp-product-tag-3">
-			<span>{item.category.name}</span>
+			<span>{translateProductText(item.category.name)}</span>
 		</div>
 		<h3 class="tp-product-title-3">
-			<a href={`/product-details/${item.id}`}>{item.title}</a>
+			<a href={`/product-details/${item.id}`}>{translateProductText(item.title, item)}</a>
 		</h3>
 		<div class="tp-product-price-wrapper-3">
 			{#if item.discount > 0}

@@ -50,7 +50,7 @@
                 <img src="/img/menu/product/menu-product-img-1.jpg" alt="" />
                 <div class="shop-mega-menu-btn">
                   <a href="/shop?category=mobile-tablets" class="tp-menu-showcase-btn tp-menu-showcase-btn-2">
-                    Phones
+                    טלפונים
                   </a>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                 <img src="/img/menu/product/menu-product-img-2.jpg" alt="" />
                 <div class="shop-mega-menu-btn">
                   <a href="/shop?category=headphones" class="tp-menu-showcase-btn tp-menu-showcase-btn-2">
-                    Headphones
+                    אוזניות
                   </a>
                 </div>
               </div>
@@ -73,7 +73,7 @@
         <ul class="tp-submenu tp-mega-menu mega-menu-style-2">
           {#each item.product_menus as prd_m, m}
             <li class="has-dropdown">
-              <a href="/shop" class="mega-menu-title">Shop Page</a>
+              <a href="/shop" class="mega-menu-title">עמוד חנות</a>
               <ul class="tp-submenu">
                 {#each prd_m.dropdown_menus as prd_sm, n}
                   <li>
