@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import product_data from '../../data/product-data';
+	import { products } from '$lib/products-loader';
+	import type { IProduct } from '../../types/product-type';
 	import type { SwiperContainer } from 'swiper/element';
 	import BeautyProductItem from './beauty/beauty-product-item.svelte';
 
@@ -11,10 +12,15 @@
 
 	let { productId, category }: IProps = $props();
 
-	// Related products
-	let related_products = product_data.filter(
-		(p) => p.category.name.toLowerCase() === category.toLowerCase() && p.id !== productId
-	);
+	// Related products - reactive on the live products store so newly added
+	// items also surface here.
+	let related_products: IProduct[] = $state([]);
+
+	const unsub = products.subscribe(($products) => {
+		related_products = $products.filter(
+			(p) => p.category.name.toLowerCase() === category.toLowerCase() && p.id !== productId
+		);
+	});
 
 	// Swiper settings
 	let slider_setting = {
@@ -44,6 +50,7 @@
 		if (swiperEl) {
 			Object.assign(swiperEl, slider_setting);
 		}
+		return () => unsub();
 	});
 </script>
 
