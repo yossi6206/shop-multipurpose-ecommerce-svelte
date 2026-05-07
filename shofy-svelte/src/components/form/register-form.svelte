@@ -3,25 +3,30 @@
   import { writable } from 'svelte/store';
   import ErrMsg from '../err-msg.svelte';
   import { CloseEye, OpenEye } from '../svg';
+  import { supabase } from '$lib/supabase';
+  import { successToast, errorToast, infoToast } from '$lib/toast';
 
-  // Stores for form values
   let name = writable('');
   let email = writable('');
   let password = writable('');
   let showPass = writable(false);
   let errors = writable<Record<string, string>>({});
+  let loading = writable(false);
 
-  // Yup Validation Schema
   const schema = yup.object({
     name: yup.string().required('שם הוא שדה חובה'),
     email: yup.string().required('אימייל הוא שדה חובה').email('כתובת אימייל לא תקינה'),
-    password: yup.string().required('סיסמה היא שדה חובה').min(6, 'הסיסמה חייבת להכיל לפחות 6 תווים').label("סיסמה")
+    password: yup
+      .string()
+      .required('סיסמה היא שדה חובה')
+      .min(6, 'הסיסמה חייבת להכיל לפחות 6 תווים')
+      .label('סיסמה')
   });
 
   async function onSubmit(event: Event) {
     event.preventDefault();
 
-    let formData = {
+    const formData = {
       name: $name,
       email: $email,
       password: $password
@@ -30,29 +35,56 @@
     try {
       await schema.validate(formData, { abortEarly: false });
       errors.set({});
-      alert(JSON.stringify(formData, null, 2));
-
-      // Reset form fields
-      name.set('');
-      email.set('');
-      password.set('');
     } catch (validationErrors: any) {
-      let errorObj: Record<string, string> = {};
+      const errorObj: Record<string, string> = {};
       validationErrors.inner.forEach((err: any) => {
         errorObj[err.path] = err.message;
       });
       errors.set(errorObj);
+      return;
     }
+
+    loading.set(true);
+
+    const { data, error } = await supabase.auth.signUp({
+      email: $email,
+      password: $password,
+      options: {
+        data: {
+          full_name: $name
+        }
+      }
+    });
+
+    loading.set(false);
+
+    if (error) {
+      errorToast(error.message);
+      return;
+    }
+
+    if (data.user && !data.session) {
+      infoToast('נשלח אימייל אישור לכתובתך. אנא אמת את חשבונך.');
+    } else {
+      successToast('ההרשמה הצליחה! ברוך הבא לשופי.');
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
+    }
+
+    name.set('');
+    email.set('');
+    password.set('');
   }
 
   const togglePasswordVisibility = () => {
-    showPass.update(v => !v);
+    showPass.update((v) => !v);
   };
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
- 
+
 <form onsubmit={onSubmit} dir="rtl">
   <div class="tp-login-input-wrapper">
     <!-- Name Field -->
@@ -108,6 +140,12 @@
   </div>
 
   <div class="tp-login-bottom">
-    <button type="submit" class="tp-login-btn w-100">הרשמה</button>
+    <button type="submit" class="tp-login-btn w-100" disabled={$loading}>
+      {#if $loading}
+        <span>טוען...</span>
+      {:else}
+        הרשמה
+      {/if}
+    </button>
   </div>
 </form>

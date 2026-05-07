@@ -1,5 +1,5 @@
 import { writable, derived, get } from "svelte/store";
-import product_data from "../data/product-data"; // Adjust the path accordingly
+import { products } from "$lib/products-loader";
 import { page } from "$app/state";
 import { goto } from "$app/navigation";
 import { formatString } from "$lib";
@@ -8,13 +8,23 @@ import type { IProduct } from "../types/product-type";
 // Store for selected filter values
 export const selectVal = writable<string>("");
 
-// Max product price
-export const maxProductPrice = writable(
-  product_data.reduce((max, product) => (product.price > max ? product.price : max), 0)
+// Max product price (reactive: updates whenever the products store changes)
+export const maxProductPrice = derived(products, ($products) =>
+  $products.reduce((max, product) => (product.price > max ? product.price : max), 0)
 );
 
-// Price filter values
+// Price filter values (lazy-init to current max)
 export const priceValues = writable<number[]>([0, get(maxProductPrice)]);
+
+// Keep priceValues upper bound in sync with the latest max price the FIRST time
+// products are hydrated from Supabase (so the slider reflects the real range).
+let _priceInitialized = false;
+maxProductPrice.subscribe((max) => {
+  if (!_priceInitialized && max > 0) {
+    priceValues.set([0, max]);
+    _priceInitialized = true;
+  }
+});
 
 // Update price range
 export function handlePriceChange(value: number[]) {
@@ -27,8 +37,8 @@ export function handleSelectFilter (value: string) {
 
 // Reset filters
 export function handleResetFilter() {
-  selectVal.set(''); 
-  priceValues.set([0, get(maxProductPrice)]); 
+  selectVal.set('');
+  priceValues.set([0, get(maxProductPrice)]);
   query.set(new URLSearchParams());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   filteredProducts.subscribe((filteredProducts) => {
@@ -60,17 +70,19 @@ export function updateQueryParams(newParams: Record<string, string>) {
   goto(`?${params.toString()}`);
 }
 
-// Filtered products (computed store)
-
 // Writable stores for query parameters
 export const query = writable(new URLSearchParams()); // Initial empty URLSearchParams
 
 if (typeof window !== 'undefined') {
   query.set(new URLSearchParams(window.location.search));
 }
-// const id = $derived(page.params.id);
-export const filteredProducts = derived([query, selectVal],([$query, $selectVal]) => {
-    let filtered_products: IProduct[] = [...product_data];
+
+// Filtered products (computed from the live products store + filters)
+export const filteredProducts = derived(
+  [products, query, selectVal],
+  ([$products, $query, $selectVal]) => {
+    let filtered_products: IProduct[] = [...$products];
+
     // Price filter
     if ($query.has('minPrice') && $query.has('maxPrice')) {
       const minPrice = Number($query.get('minPrice'));
@@ -135,40 +147,42 @@ export const filteredProducts = derived([query, selectVal],([$query, $selectVal]
   }
 );
 
-// Search-filtered items (computed store)
-export const searchFilteredItems = derived([selectVal], ([$selectVal]) => {
-  let filtered = [...product_data];
+// Search-filtered items (computed from the live products store)
+export const searchFilteredItems = derived(
+  [products, selectVal],
+  ([$products, $selectVal]) => {
+    let filtered = [...$products];
 
-  const query = page.url.searchParams;
-  const searchText = query.get("searchText")?.toLowerCase() || "";
-  const productType = query.get("productType")?.toLowerCase() || "";
+    const queryParams = page.url.searchParams;
+    const searchText = queryParams.get("searchText")?.toLowerCase() || "";
+    const productType = queryParams.get("productType")?.toLowerCase() || "";
 
-  if (searchText && !productType) {
-    filtered = filtered.filter((p) => p.title.toLowerCase().includes(searchText));
-  } else if (!searchText && productType) {
-    filtered = filtered.filter((p) => p.productType.toLowerCase() === productType);
-  } else if (searchText && productType) {
-    filtered = filtered
-      .filter((p) => p.productType.toLowerCase() === productType)
-      .filter((p) => p.title.toLowerCase().includes(searchText));
+    if (searchText && !productType) {
+      filtered = filtered.filter((p) => p.title.toLowerCase().includes(searchText));
+    } else if (!searchText && productType) {
+      filtered = filtered.filter((p) => p.productType.toLowerCase() === productType);
+    } else if (searchText && productType) {
+      filtered = filtered
+        .filter((p) => p.productType.toLowerCase() === productType)
+        .filter((p) => p.title.toLowerCase().includes(searchText));
+    }
+
+    // Sorting
+    switch ($selectVal) {
+      case "low":
+        filtered = filtered.sort((a, b) => a.price - b.price);
+        break;
+      case "high":
+        filtered = filtered.sort((a, b) => b.price - a.price);
+        break;
+      case "new":
+        filtered = filtered.slice(-6);
+        break;
+      case "sale":
+        filtered = filtered.filter((p) => p.discount > 0);
+        break;
+    }
+
+    return filtered;
   }
-
-  // Sorting
-  switch ($selectVal) {
-    case "low":
-      filtered = filtered.sort((a, b) => a.price - b.price);
-      break;
-    case "high":
-      filtered = filtered.sort((a, b) => b.price - a.price);
-      break;
-    case "new":
-      filtered = filtered.slice(-6);
-      break;
-    case "sale":
-      filtered = filtered.filter((p) => p.discount > 0);
-      break;
-  }
-
-  return filtered;
-});
-
+);

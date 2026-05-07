@@ -1,4 +1,5 @@
-import product_data from "../data/product-data";
+import { get } from "svelte/store";
+import { products } from "./products-loader";
 import type { IProduct } from "../types/product-type";
 
 // place files you want to import through the `$lib` alias in this folder.
@@ -28,6 +29,8 @@ export function calculateDiscountPrice(price: number, discount: number): number 
 }
 
 export function getMaxPrice () {
-  return Math.max(...product_data.map((item: IProduct) => item.price));
+  const list = get(products);
+  if (!list.length) return 0;
+  return Math.max(...list.map((item: IProduct) => item.price));
 }
 

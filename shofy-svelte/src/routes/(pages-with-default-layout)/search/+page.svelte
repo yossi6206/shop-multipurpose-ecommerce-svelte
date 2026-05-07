@@ -2,15 +2,15 @@
 	import { page } from '$app/state';
 	import { onDestroy } from 'svelte';
 	import { derived, writable } from 'svelte/store';
-	import product_data from '../../../data/product-data';
+	import { products } from '$lib/products-loader';
 	import MetaTitle from '../../../components/meta-title.svelte';
 	import FilterSelect from '../../../components/shop/sidebar/filter-select.svelte';
 	import BreadcrumbOne from '../../../components/breadcrumb/breadcrumb-one.svelte';
 	import { selectVal } from '../../../store/product-filter-store';
 	import FashionProductItem from '../../../components/product/fashion/fashion-product-item.svelte';
 
-	const searchFilteredItems = derived([selectVal], ([$selectVal]) => {
-		let filtered = [...product_data];
+	const searchFilteredItems = derived([products, selectVal], ([$products, $selectVal]) => {
+		let filtered = [...$products];
 
 		const query = page.url.searchParams;
 		const searchText = query.get('searchText')?.toLowerCase() || '';
@@ -79,7 +79,7 @@
 										<div class="tp-shop-top-left d-flex align-items-center">
 											<div class="tp-shop-top-result">
 												<p>
-													Showing 1–{$searchFilteredItems.length} of {product_data.length} results
+													Showing 1–{$searchFilteredItems.length} of {$products.length} results
 												</p>
 											</div>
 										</div>

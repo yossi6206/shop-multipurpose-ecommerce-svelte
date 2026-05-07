@@ -3,15 +3,16 @@
 	import { writable } from 'svelte/store';
 	import type { IProduct } from '../../types/product-type';
 	import { Grid, List } from '../svg';
-	import product_data from '../../data/product-data';
+	import { products } from '$lib/products-loader';
 	import FilterSelect from './sidebar/filter-select.svelte';
 	import FashionProductItem from '../product/fashion/fashion-product-item.svelte';
 	import ProductListItem from '../product/product-list-item.svelte';
 	import ShopSidebarArea from './sidebar/shop-sidebar-area.svelte';
 	import { filteredProducts, handleResetFilter } from '../../store/product-filter-store';
+	import { get } from 'svelte/store';
 
 	let activeTab = writable('grid');
-	let productItems: IProduct[] = $state([...product_data]);
+	let productItems: IProduct[] = $state([...get(products)]);
 
 	let perView = writable(9);
 
@@ -71,7 +72,7 @@
 										</ul>
 									</div>
 									<div class="tp-shop-top-result">
-										<p>Showing 1–{productItems.length} of {product_data.length} results</p>
+										<p>Showing 1–{productItems.length} of {$products.length} results</p>
 									</div>
 								</div>
 							</div>

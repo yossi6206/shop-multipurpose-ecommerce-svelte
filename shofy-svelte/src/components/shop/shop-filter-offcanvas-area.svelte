@@ -4,7 +4,7 @@
 	import { filteredProducts, handleResetFilter } from '../../store/product-filter-store';
 	import type { IProduct } from '../../types/product-type';
 	import { Filter, Grid, List } from '../svg';
-	import product_data from '../../data/product-data';
+	import { products } from '$lib/products-loader';
 	import FilterSelect from './sidebar/filter-select.svelte';
 	import FashionProductItem from '../product/fashion/fashion-product-item.svelte';
 	import ProductListItem from '../product/product-list-item.svelte';
@@ -79,7 +79,7 @@
 										</ul>
 									</div>
 									<div class="tp-shop-top-result">
-										<p>Showing 1–{paginatedData.length} of {product_data.length} results</p>
+										<p>Showing 1–{paginatedData.length} of {$products.length} results</p>
 									</div>
 								</div>
 							</div>

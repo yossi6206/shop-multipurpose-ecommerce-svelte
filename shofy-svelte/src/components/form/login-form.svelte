@@ -3,11 +3,9 @@
 	import { writable } from 'svelte/store';
 	import ErrMsg from '../err-msg.svelte';
 	import { CloseEye, OpenEye } from '../svg';
+	import { supabase } from '$lib/supabase';
+	import { successToast, errorToast } from '$lib/toast';
 
-	interface FormData {
-		email: string;
-		password: string;
-	}
 	interface Props {
 		emailLabel?: string;
 		emailPlaceholder?: string;
@@ -34,10 +32,12 @@
 		passwordRequiredMessage = 'Password is required',
 		passwordMinMessage = 'Password Min. 6 characters'
 	}: Props = $props();
+
 	let showPass = writable(false);
 	let email = writable('');
 	let password = writable('');
 	let errors = writable<Record<string, string>>({});
+	let loading = writable(false);
 
 	const schema = yup.object({
 		email: yup.string().required(emailRequiredMessage).email(invalidEmailMessage),
@@ -46,24 +46,45 @@
 
 	async function onSubmit(event: Event) {
 		event.preventDefault();
-		let formData: FormData = {
+
+		const formData = {
 			email: $email,
 			password: $password
 		};
+
 		try {
 			await schema.validate(formData, { abortEarly: false });
 			errors.set({});
-			alert(JSON.stringify(formData, null, 2));
-			// form reset;
-			$email = '';
-			$password = '';
 		} catch (validationErrors: any) {
-			let errorObj: Record<string, string> = {};
+			const errorObj: Record<string, string> = {};
 			validationErrors.inner.forEach((err: any) => {
 				errorObj[err.path] = err.message;
 			});
 			errors.set(errorObj);
+			return;
 		}
+
+		loading.set(true);
+
+		const { error } = await supabase.auth.signInWithPassword({
+			email: $email,
+			password: $password
+		});
+
+		loading.set(false);
+
+		if (error) {
+			errorToast(error.message);
+			return;
+		}
+
+		successToast('התחברת בהצלחה!');
+		setTimeout(() => {
+			window.location.href = '/';
+		}, 1000);
+
+		$email = '';
+		$password = '';
 	}
 
 	const togglePasswordVisibility = () => {
@@ -124,6 +145,12 @@
 	</div>
 
 	<div class="tp-login-bottom">
-		<button type="submit" class="tp-login-btn w-100">{submitLabel}</button>
+		<button type="submit" class="tp-login-btn w-100" disabled={$loading}>
+			{#if $loading}
+				<span>טוען...</span>
+			{:else}
+				{submitLabel}
+			{/if}
+		</button>
 	</div>
 </form>
