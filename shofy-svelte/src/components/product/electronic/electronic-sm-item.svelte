@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatPrice } from "$lib";
+  import { translateProductText } from "$lib/hebrew-product";
 	import type { IProduct } from "../../../types/product-type";
   let { item }:{item: IProduct} = $props();
 </script>
@@ -12,10 +13,10 @@
   </div>
   <div class="tp-product-sm-content">
     <div class="tp-product-category">
-      <a href={`/product-details/${item.id}`}>{item.category.name}</a>
+      <a href={`/product-details/${item.id}`}>{translateProductText(item.category.name)}</a>
     </div>
     <h3 class="tp-product-title">
-      <a href={`/product-details/${item.id}`}>{item.title}</a>
+      <a href={`/product-details/${item.id}`}>{translateProductText(item.title, item)}</a>
     </h3>
     <div class="tp-product-rating d-sm-flex align-items-center">
       <div class="tp-product-rating-icon">
