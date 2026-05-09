@@ -5,6 +5,7 @@
 	import { CartTwo, Wishlist, QuickView } from '../../svg';
 	import type { IProduct } from '../../../types/product-type';
 	import { handleModalProduct } from '../../../store/product-store';
+	import { translateProductText } from '$lib/hebrew-product';
 
 	interface Props {
 		item: IProduct;
@@ -15,20 +16,6 @@
 
 	const itemInWishlist = wishlistStore.isItemInWishlist(item);
 	const itemInCart = isItemInCart(item);
-
-	const productTitles: Record<string, string> = {
-		'Headphones Wireless.': 'אוזניות אלחוטיות',
-		'Gaming Headphone': 'אוזניות גיימינג',
-		'Headphone with Mic': 'אוזניות עם מיקרופון',
-		'Galaxy Android Tablet': 'טאבלט גלקסי אנדרואיד',
-		'iPhone 14 Pro': 'אייפון 14 פרו',
-		'Apple iPad Air': 'אייפד אייר של אפל'
-	};
-
-	const categoryNames: Record<string, string> = {
-		Headphones: 'אוזניות',
-		'Mobile Tablets': 'טאבלטים וסלולר'
-	};
 
 	const formatHebrewPrice = (price: number, showDecimals = true) =>
 		new Intl.NumberFormat('he-IL', {
@@ -100,10 +87,10 @@
 	<!-- product content -->
 	<div class="tp-product-content" dir="rtl">
 		<div class="tp-product-category">
-			<a href={`/product-details/${item.id}`}>{categoryNames[item.category.name] ?? item.category.name}</a>
+			<a href={`/product-details/${item.id}`}>{translateProductText(item.category.name)}</a>
 		</div>
 		<h3 class="tp-product-title">
-			<a href={`/product-details/${item.id}`}>{productTitles[item.title] ?? item.title}</a>
+			<a href={`/product-details/${item.id}`}>{translateProductText(item.title, item)}</a>
 		</h3>
 		<div class="tp-product-rating d-flex align-items-center">
 			<div class="tp-product-rating-icon">

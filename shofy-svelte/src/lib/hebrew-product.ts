@@ -8,13 +8,24 @@ const productTitleTranslations: Record<string, string> = {
 	'Galaxy Android Tablet': 'טאבלט גלקסי אנדרואיד',
 	'Headphones Wireless.': 'אוזניות אלחוטיות',
 	'Gaming Headphone': 'אוזניות גיימינג',
-	'Headphone with Mic': 'אוזניות עם מיקרופון'
+	'Headphone with Mic': 'אוזניות עם מיקרופון',
+	'Apple Watch Sport Band': 'שעון אפל רצועת ספורט',
+	'Sony Smart Watch': 'שעון חכם סוני',
+	'Sony Lady Fitness Watch': 'שעון כושר לנשים סוני',
+	'Lenovo Wireless Bluetooth': 'בלוטות׳ אלחוטי לנובו',
+	'Lenovo Sports Bluetooth': 'בלוטות׳ ספורט לנובו'
 };
 
 const textTranslations: Record<string, string> = {
 	Apple: 'אפל',
 	Headphones: 'אוזניות',
 	Phones: 'טלפונים',
+	'Smart Watch': 'שעון חכם',
+	Bluetooth: 'בלוטות׳',
+	'Sports Smart Watch': 'שעון חכם לספורט',
+	'Fitness Smart Watch': 'שעון חכם לכושר',
+	'Wireless Bluetooth': 'בלוטות׳ אלחוטי',
+	'Sports Bluetooth': 'בלוטות׳ לספורט',
 	'Mobile Tablets': 'סמארטפונים וטאבלטים',
 	'Mobile ': 'סלולר',
 	Tablets: 'טאבלטים',
